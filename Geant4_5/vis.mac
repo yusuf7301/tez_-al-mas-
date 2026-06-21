@@ -1,0 +1,25 @@
+# --- vis.mac: Optimizasyon ve Kararlılık Ayarları ---
+
+# 1. Görselleştiriciyi başlat (OpenGL Qt yerine stabil arayüz)
+/vis/open OGL 600x600-0+0
+
+# 2. Sahne ayarları (Kamera ve açı)
+/vis/drawVolume
+/vis/viewer/set/autoRefresh true
+/vis/viewer/set/viewpointThetaPhi 90 0
+/vis/viewer/zoom 1.2
+
+# 3. İzleme ve Çizim Ayarları (GPU'yu yormamak için bu kısmı sade tutuyoruz)
+/vis/scene/add/trajectories smooth
+/vis/scene/endOfEventAction accumulate
+/vis/modeling/trajectories/create/drawByCharge
+/vis/modeling/trajectories/drawByCharge-0/default/setDrawStepPts false
+/vis/modeling/trajectories/drawByCharge-0/default/setStepPtsSize 1
+
+# 4. Kalıcılık (Simülasyonun her adımda veriyi taze tutması için)
+/vis/scene/add/axes 0 0 0 1 m
+/vis/geometry/set/visibility World 0 false
+
+
+# bu kod olmadan geometri gelmez bu çok önemli!!!!!!!!!
+# LIBGL_ALWAYS_SOFTWARE=1 QT_QPA_PLATFORM=xcb ./CherenkovApp
